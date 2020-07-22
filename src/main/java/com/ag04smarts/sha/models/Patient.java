@@ -13,18 +13,24 @@ import java.time.LocalDate;
  * @Author Ivan Jukić
  */
 
-@Entity()
+@Entity
+@Table(name ="patient")
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
+    @Column(name = "ID")
     private long id;
-
+    @Column(name="First_Name")
     private String firstName;
+    @Column(name="Last_Name")
     private String lastName;
+    @Column(name="Therapy")
     private String therapy;
+    @Column(name="Date_Of_Birth")
     private LocalDate dateOfBirth;
+    @Column(name="Sex")
     private String sex;
+    @Column(name="SSN", unique = true)
     private Long SSN;
 
     /**

@@ -9,6 +9,13 @@ import org.springframework.context.ConfigurableApplicationContext;
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 
+/**
+ * Runner for the Spring Boot Application. This class initializes in @PostConstruct default patients to
+ * be saved in the patient repository.
+ *
+ * @Author Ivan Jukić
+ */
+
 @SpringBootApplication
 public class SHAApplication {
 

@@ -6,25 +6,57 @@ import com.ag04smarts.sha.repositories.PatientRepository;
 
 import java.util.List;
 
+/**
+ * Rest controller for http requests GET, POST, DELETE, PUT for Patient object.
+ *
+ * @Author Ivan Jukić
+ */
+
 @RestController
 public class PatientController {
 
     private final PatientRepository patientRepository;
+
+    /**
+     * Constructor that initializes the repository created in @PostConstruct in {@Link SHAApplication}.
+     *
+     * @param patientRepository repository of patients
+     */
 
     public PatientController(PatientRepository patientRepository) {
 
         this.patientRepository = patientRepository;
     }
 
+    /**
+     * Get method to return all of the patient in the repository.
+     *
+     * @return list of patients in the repository
+     */
+
     @GetMapping("/api/patient")
     List<Patient> all() {
         return patientRepository.findAll();
     }
 
+    /**
+     * Post method for saving a new patient in the repository.
+     *
+     * @param newPatient new patient to be saved
+     * @return the saved patient
+     */
+
     @PostMapping("/api/patient")
     Patient newPatient(@RequestBody Patient newPatient) {
         return patientRepository.save(newPatient);
     }
+
+    /**
+     * Get method for retrieving a specific patient given by the id parameter.
+     *
+     * @param id id of the patient
+     * @return patient with the given id
+     */
 
     @GetMapping("/api/patient/{id}")
     Patient one(@PathVariable Long id) {
