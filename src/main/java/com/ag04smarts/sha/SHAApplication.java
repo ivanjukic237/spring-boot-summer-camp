@@ -38,13 +38,15 @@ public class SHAApplication {
         );
         patientRepository.save(firstPatient);
         patientRepository.save(secondPatient);
-
-        System.out.println(firstPatient);
-        System.out.println(secondPatient);
     }
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(SHAApplication.class, args);
+        PatientRepository patientRepository = (PatientRepository)context.getBean("patientRepository");
+        System.out.println("Number of patients in repository: " + patientRepository.count());
+        for(Patient patient : patientRepository.findAll()) {
+            System.out.println(patient);
+        }
 
     }
 }

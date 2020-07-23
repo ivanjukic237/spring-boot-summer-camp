@@ -1,10 +1,18 @@
 package com.ag04smarts.sha.controllers;
 
+
 import com.ag04smarts.sha.models.Patient;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.*;
 import com.ag04smarts.sha.repositories.PatientRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
 
 /**
  * Rest controller for http requests GET, POST, DELETE, PUT for Patient object.
@@ -16,16 +24,19 @@ import java.util.List;
 public class PatientController {
 
     private final PatientRepository patientRepository;
+    private final PatientModelAssembler patientModelAssembler;
 
     /**
      * Constructor that initializes the repository created in @PostConstruct in {@Link SHAApplication}.
      *
-     * @param patientRepository repository of patients
+     * @param patientRepository     repository of patients
+     * @param patientModelAssembler link assembler for one patient
      */
 
-    public PatientController(PatientRepository patientRepository) {
+    public PatientController(@Qualifier(value = "patientRepository") PatientRepository patientRepository, PatientModelAssembler patientModelAssembler) {
 
         this.patientRepository = patientRepository;
+        this.patientModelAssembler = patientModelAssembler;
     }
 
     /**
@@ -35,8 +46,16 @@ public class PatientController {
      */
 
     @GetMapping("/api/patient")
-    List<Patient> all() {
-        return patientRepository.findAll();
+    CollectionModel<EntityModel<Patient>> all() {
+
+        //Maps every patient in repository to EntityModel<Patient> and puts them in the List<EntityModel<Patient>>.
+        List<EntityModel<Patient>> patients = patientRepository.findAll()
+                .stream()
+                .map(patient -> patientModelAssembler.toModel(patient))
+                .collect(Collectors.toList());
+
+        return CollectionModel.of(patients,
+                linkTo(methodOn(PatientController.class).all()).withSelfRel());
     }
 
     /**
@@ -47,8 +66,8 @@ public class PatientController {
      */
 
     @PostMapping("/api/patient")
-    Patient newPatient(@RequestBody Patient newPatient) {
-        return patientRepository.save(newPatient);
+    EntityModel<Patient> newPatient(@RequestBody Patient newPatient) {
+        return patientModelAssembler.toModel(patientRepository.save(newPatient));
     }
 
     /**
@@ -59,10 +78,13 @@ public class PatientController {
      */
 
     @GetMapping("/api/patient/{id}")
-    Patient one(@PathVariable Long id) {
-        return patientRepository.findById(id).
+    EntityModel<Patient> one(@PathVariable Long id) {
+
+        Patient patient = patientRepository.findById(id).
                 orElseThrow(() -> new
                         PatientNotFoundException(id));
+        return patientModelAssembler.toModel(patient);
+
     }
 
     /**
@@ -77,8 +99,8 @@ public class PatientController {
      */
 
     @PutMapping("/api/patient/{id}")
-    Patient replacePatient(@RequestBody Patient newPatient, @PathVariable Long id) {
-        return patientRepository.findById(id)
+    EntityModel<Patient> replacePatient(@RequestBody Patient newPatient, @PathVariable Long id) {
+        return patientModelAssembler.toModel(patientRepository.findById(id)
                 .map(patient -> {
                     patient.setFirstName(newPatient.getFirstName());
                     patient.setLastName(newPatient.getLastName());
@@ -91,7 +113,7 @@ public class PatientController {
                 .orElseGet(() -> {
                     newPatient.setId(id);
                     return patientRepository.save(newPatient);
-                });
+                }));
     }
 
     /**
