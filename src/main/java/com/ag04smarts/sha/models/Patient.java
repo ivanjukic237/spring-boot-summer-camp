@@ -26,7 +26,7 @@ public class Patient {
     @Column(name="Date_Of_Birth")
     private LocalDate dateOfBirth;
     @Column(name="Sex")
-    private String sex;
+    private SexOptions sex;
     @Column(name="SSN", unique = true)
     private Long SSN;
 
@@ -48,7 +48,7 @@ public class Patient {
      * @param SSN         Social Security Number of the patient
      */
 
-    public Patient(String firstName, String lastName, String therapy, LocalDate dateOfBirth, String sex, Long SSN) {
+    public Patient(String firstName, String lastName, String therapy, LocalDate dateOfBirth, SexOptions sex, Long SSN) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.therapy = therapy;
@@ -162,7 +162,7 @@ public class Patient {
      * @return the sex of the patient
      */
 
-    public String getSex() {
+    public SexOptions getSex() {
         return sex;
     }
 
@@ -172,7 +172,7 @@ public class Patient {
      * @param sex the sex of the patient
      */
 
-    public void setSex(String sex) {
+    public void setSex(SexOptions sex) {
         this.sex = sex;
     }
 
