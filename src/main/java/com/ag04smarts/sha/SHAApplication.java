@@ -64,11 +64,11 @@ public class SHAApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(SHAApplication.class, args);
 
-        PatientRepository patientRepository = (PatientRepository)context.getBean("patientRepository");
+        PatientRepository patientRepository = (PatientRepository) context.getBean("patientRepository");
 
         System.out.println("Number of patients in repository: " + patientRepository.count());
 
-        for(Patient patient : patientRepository.findAll()) {
+        for (Patient patient : patientRepository.findAll()) {
             System.out.println(patient);
         }
 

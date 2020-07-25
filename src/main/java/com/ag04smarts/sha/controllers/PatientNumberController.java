@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class PatientNumberController {
 
-    private final NumberOfPatientsService numberOfPatientsService;
+    public final NumberOfPatientsService numberOfPatientsService;
 
     /**
      * Constructor for the class.

@@ -23,8 +23,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 @RestController
 public class PatientController {
 
-    private final PatientRepository patientRepository;
-    private final PatientModelAssembler patientModelAssembler;
+    public final PatientRepository patientRepository;
+    public final PatientModelAssembler patientModelAssembler;
 
     /**
      * Constructor that initializes the repository created in @PostConstruct in {@Link SHAApplication}.
@@ -108,7 +108,7 @@ public class PatientController {
                     patient.setSex(newPatient.getSex());
                     patient.setTherapy(newPatient.getTherapy());
                     patient.setSSN(newPatient.getSSN());
-                    return patientRepository.save(newPatient);
+                    return patientRepository.save(patient);
                 })
                 .orElseGet(() -> {
                     newPatient.setId(id);
@@ -122,7 +122,7 @@ public class PatientController {
      * @param id id of the patient entity
      */
 
-    @DeleteMapping("/api/{id}")
+    @DeleteMapping("/api/patient/{id}")
     void deletePatient(@PathVariable Long id) {
         patientRepository.deleteById(id);
     }

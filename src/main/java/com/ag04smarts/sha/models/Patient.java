@@ -17,16 +17,23 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private long id;
+
     @Column(name="First_Name")
     private String firstName;
+
     @Column(name="Last_Name")
     private String lastName;
+
     @Column(name="Therapy")
     private String therapy;
+
     @Column(name="Date_Of_Birth")
     private LocalDate dateOfBirth;
+
     @Column(name="Sex")
+    @Enumerated(EnumType.STRING)
     private SexOptions sex;
+
     @Column(name="SSN", unique = true)
     private Long SSN;
 
