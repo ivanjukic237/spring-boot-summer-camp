@@ -23,8 +23,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 @RestController
 public class PatientController {
 
-    public final PatientRepository patientRepository;
-    public final PatientModelAssembler patientModelAssembler;
+    private final PatientRepository patientRepository;
+    private final PatientModelAssembler patientModelAssembler;
 
     /**
      * Constructor that initializes the repository created in @PostConstruct in {@Link SHAApplication}.
@@ -46,7 +46,7 @@ public class PatientController {
      */
 
     @GetMapping("/api/patient")
-    CollectionModel<EntityModel<Patient>> all() {
+    public CollectionModel<EntityModel<Patient>> all() {
 
         //Maps every patient in repository to EntityModel<Patient> and puts them in the List<EntityModel<Patient>>.
         List<EntityModel<Patient>> patients = patientRepository.findAll()
@@ -66,7 +66,7 @@ public class PatientController {
      */
 
     @PostMapping("/api/patient")
-    EntityModel<Patient> newPatient(@RequestBody Patient newPatient) {
+    public EntityModel<Patient> newPatient(@RequestBody Patient newPatient) {
         return patientModelAssembler.toModel(patientRepository.save(newPatient));
     }
 
@@ -78,7 +78,7 @@ public class PatientController {
      */
 
     @GetMapping("/api/patient/{id}")
-    EntityModel<Patient> one(@PathVariable Long id) {
+    public EntityModel<Patient> one(@PathVariable Long id) {
 
         Patient patient = patientRepository.findById(id).
                 orElseThrow(() -> new
@@ -99,7 +99,7 @@ public class PatientController {
      */
 
     @PutMapping("/api/patient/{id}")
-    EntityModel<Patient> replacePatient(@RequestBody Patient newPatient, @PathVariable Long id) {
+    public EntityModel<Patient> replacePatient(@RequestBody Patient newPatient, @PathVariable Long id) {
         return patientModelAssembler.toModel(patientRepository.findById(id)
                 .map(patient -> {
                     patient.setFirstName(newPatient.getFirstName());
@@ -123,7 +123,7 @@ public class PatientController {
      */
 
     @DeleteMapping("/api/patient/{id}")
-    void deletePatient(@PathVariable Long id) {
+    public void deletePatient(@PathVariable Long id) {
         patientRepository.deleteById(id);
     }
 }
