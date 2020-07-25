@@ -1,18 +1,10 @@
 package com.ag04smarts.sha.controllers;
 
-
+import com.ag04smarts.sha.Services.PatientService;
 import com.ag04smarts.sha.models.Patient;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.*;
-import com.ag04smarts.sha.repositories.PatientRepository;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
-
 
 /**
  * Rest controller for http requests GET, POST, DELETE, PUT for Patient object.
@@ -23,20 +15,16 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 @RestController
 public class PatientController {
 
-    private final PatientRepository patientRepository;
-    private final PatientModelAssembler patientModelAssembler;
+    private final PatientService patientService;
 
     /**
      * Constructor that initializes the repository created in @PostConstruct in {@Link SHAApplication}.
      *
-     * @param patientRepository     repository of patients
-     * @param patientModelAssembler link assembler for one patient
+     * @param patientService service for http methods
      */
 
-    public PatientController(@Qualifier(value = "patientRepository") PatientRepository patientRepository, PatientModelAssembler patientModelAssembler) {
-
-        this.patientRepository = patientRepository;
-        this.patientModelAssembler = patientModelAssembler;
+    public PatientController(PatientService patientService) {
+        this.patientService = patientService;
     }
 
     /**
@@ -47,15 +35,7 @@ public class PatientController {
 
     @GetMapping("/api/patient")
     public CollectionModel<EntityModel<Patient>> all() {
-
-        //Maps every patient in repository to EntityModel<Patient> and puts them in the List<EntityModel<Patient>>.
-        List<EntityModel<Patient>> patients = patientRepository.findAll()
-                .stream()
-                .map(patient -> patientModelAssembler.toModel(patient))
-                .collect(Collectors.toList());
-
-        return CollectionModel.of(patients,
-                linkTo(methodOn(PatientController.class).all()).withSelfRel());
+        return patientService.mapEveryPatient();
     }
 
     /**
@@ -67,7 +47,7 @@ public class PatientController {
 
     @PostMapping("/api/patient")
     public EntityModel<Patient> newPatient(@RequestBody Patient newPatient) {
-        return patientModelAssembler.toModel(patientRepository.save(newPatient));
+        return patientService.newPatient(newPatient);
     }
 
     /**
@@ -79,19 +59,11 @@ public class PatientController {
 
     @GetMapping("/api/patient/{id}")
     public EntityModel<Patient> one(@PathVariable Long id) {
-
-        Patient patient = patientRepository.findById(id).
-                orElseThrow(() -> new
-                        PatientNotFoundException(id));
-        return patientModelAssembler.toModel(patient);
-
+        return patientService.getPatient(id);
     }
 
     /**
      * PUT http method with the given new patient entity request body and the patient id.
-     * If the patient by the given id exists, then all attributes of the patient
-     * is replaced by the attributes of the given patient. If the patient by the
-     * given id doesn't exist, then a new patient is created and saved.
      *
      * @param newPatient new patient
      * @param id         id of the patient
@@ -100,20 +72,7 @@ public class PatientController {
 
     @PutMapping("/api/patient/{id}")
     public EntityModel<Patient> replacePatient(@RequestBody Patient newPatient, @PathVariable Long id) {
-        return patientModelAssembler.toModel(patientRepository.findById(id)
-                .map(patient -> {
-                    patient.setFirstName(newPatient.getFirstName());
-                    patient.setLastName(newPatient.getLastName());
-                    patient.setDateOfBirth(newPatient.getDateOfBirth());
-                    patient.setSex(newPatient.getSex());
-                    patient.setTherapy(newPatient.getTherapy());
-                    patient.setSSN(newPatient.getSSN());
-                    return patientRepository.save(patient);
-                })
-                .orElseGet(() -> {
-                    newPatient.setId(id);
-                    return patientRepository.save(newPatient);
-                }));
+        return patientService.replacePatient(newPatient, id);
     }
 
     /**
@@ -124,6 +83,6 @@ public class PatientController {
 
     @DeleteMapping("/api/patient/{id}")
     public void deletePatient(@PathVariable Long id) {
-        patientRepository.deleteById(id);
+        patientService.deletePatient(id);
     }
 }

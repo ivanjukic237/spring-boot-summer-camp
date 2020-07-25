@@ -5,12 +5,9 @@ import com.ag04smarts.sha.info.PropertyInformation;
 import com.ag04smarts.sha.models.Patient;
 import com.ag04smarts.sha.models.SexOptions;
 import com.ag04smarts.sha.repositories.PatientRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.core.env.Environment;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
