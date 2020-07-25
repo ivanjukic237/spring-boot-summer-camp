@@ -88,7 +88,7 @@ public class HttpMethodsPatientService implements PatientService {
      * Method to replace the patient for the given id.
      * If the patient by the given id exists, then all attributes of the patient
      * is replaced by the attributes of the given patient. If the patient by the
-     * given id doesn't exist, then a new patient is created and saved.
+     * given id doesn't exist, then an exception is thrown.
      *
      * @param newPatient new patient to replace the old one
      * @param id         id of the patient
@@ -97,20 +97,19 @@ public class HttpMethodsPatientService implements PatientService {
 
     @Override
     public EntityModel<Patient> replacePatient(Patient newPatient, long id) {
-        return patientModelAssembler.toModel(patientRepository.findById(id)
-                .map(patient -> {
-                    patient.setFirstName(newPatient.getFirstName());
-                    patient.setLastName(newPatient.getLastName());
-                    patient.setDateOfBirth(newPatient.getDateOfBirth());
-                    patient.setSex(newPatient.getSex());
-                    patient.setTherapy(newPatient.getTherapy());
-                    patient.setSSN(newPatient.getSSN());
-                    return patientRepository.save(patient);
-                })
-                .orElseGet(() -> {
-                    newPatient.setId(id);
-                    return patientRepository.save(newPatient);
-                }));
+
+        Patient patient = patientRepository.findById(id).
+                orElseThrow(() -> new
+                        PatientNotFoundException(id));
+
+        patient.setFirstName(newPatient.getFirstName());
+        patient.setLastName(newPatient.getLastName());
+        patient.setDateOfBirth(newPatient.getDateOfBirth());
+        patient.setSex(newPatient.getSex());
+        patient.setTherapy(newPatient.getTherapy());
+        patient.setSSN(newPatient.getSSN());
+
+        return patientModelAssembler.toModel(patientRepository.save(patient));
     }
 
     /**
