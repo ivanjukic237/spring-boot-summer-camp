@@ -1,4 +1,4 @@
-package com.ag04smarts.sha.Services;
+package com.ag04smarts.sha.Services.patient;
 
 import com.ag04smarts.sha.models.Patient;
 import com.ag04smarts.sha.models.SexOptions;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * Service that counts the number of female patients in the patient repository.
  * Profile name is "female".
  *
- * @Author Ivan Jukić
+ * @author Ivan Jukić
  */
 
 @Service

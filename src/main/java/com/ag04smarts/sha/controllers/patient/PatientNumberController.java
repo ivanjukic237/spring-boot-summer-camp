@@ -1,13 +1,13 @@
-package com.ag04smarts.sha.controllers;
+package com.ag04smarts.sha.controllers.patient;
 
-import com.ag04smarts.sha.Services.NumberOfPatientsService;
+import com.ag04smarts.sha.Services.patient.NumberOfPatientsService;
 import org.springframework.stereotype.Controller;
 
 /**
  * Controller that returns the number of patients
  * depending on the condition given by the NumberOfPatientsService.
  *
- * @Author Ivan Jukić
+ * @author Ivan Jukić
  */
 
 @Controller

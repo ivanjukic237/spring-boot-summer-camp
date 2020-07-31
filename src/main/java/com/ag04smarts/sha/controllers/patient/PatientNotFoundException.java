@@ -1,10 +1,10 @@
-package com.ag04smarts.sha.controllers;
+package com.ag04smarts.sha.controllers.patient;
 
 /**
  * Custom exception class for when the http methods can't find the patient in
  * the repository.
  *
- * @Author Ivan Jukić
+ * @author Ivan Jukić
  */
 
 public class PatientNotFoundException extends RuntimeException {

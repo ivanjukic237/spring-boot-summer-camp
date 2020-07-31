@@ -1,8 +1,9 @@
-package com.ag04smarts.sha.controllers;
+package com.ag04smarts.sha.controllers.patient;
 
 import com.ag04smarts.sha.models.Patient;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Component;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -11,7 +12,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 /**
  * Assembles the hypermedia for Patient entity.
  *
- * @Author Ivan Jukić
+ * @author Ivan Jukić
  */
 
 @Component
@@ -27,7 +28,7 @@ public class PatientModelAssembler implements RepresentationModelAssembler<Patie
     @Override
     public EntityModel<Patient> toModel(Patient patient) {
         return EntityModel.of(patient,
-                linkTo(methodOn(PatientController.class).one(patient.getId())).withSelfRel(),
+                WebMvcLinkBuilder.linkTo(methodOn(PatientController.class).one(patient.getId())).withSelfRel(),
                 linkTo(methodOn(PatientController.class).all()).withRel("api/patient"));
     }
 

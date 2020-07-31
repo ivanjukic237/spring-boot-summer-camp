@@ -1,9 +1,9 @@
-package com.ag04smarts.sha.Services;
+package com.ag04smarts.sha.Services.patient;
 
 /**
  * Interface for service classes that give the number of patients.
  *
- * @Author Ivan Jukić
+ * @author Ivan Jukić
  */
 
 public interface NumberOfPatientsService {

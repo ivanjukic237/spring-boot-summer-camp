@@ -1,4 +1,4 @@
-package com.ag04smarts.sha.controllers;
+package com.ag04smarts.sha.controllers.patient;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * Controller advice class that sends the response with the custom error message
  * from the {@link PatientNotFoundException}.
  *
- * @Author Ivan Jukić
+ * @author Ivan Jukić
  */
 
 @ControllerAdvice

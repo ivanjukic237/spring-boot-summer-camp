@@ -1,8 +1,8 @@
-package com.ag04smarts.sha.Services;
+package com.ag04smarts.sha.Services.patient;
 
-import com.ag04smarts.sha.controllers.PatientController;
-import com.ag04smarts.sha.controllers.PatientModelAssembler;
-import com.ag04smarts.sha.controllers.PatientNotFoundException;
+import com.ag04smarts.sha.controllers.patient.PatientController;
+import com.ag04smarts.sha.controllers.patient.PatientModelAssembler;
+import com.ag04smarts.sha.controllers.patient.PatientNotFoundException;
 import com.ag04smarts.sha.models.Patient;
 import com.ag04smarts.sha.repositories.PatientRepository;
 import org.springframework.hateoas.CollectionModel;
@@ -18,7 +18,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 /**
  * Implementation of the PatientService for replacing, getting and deleting patients.
  *
- * @Author Ivan Jukić
+ * @author Ivan Jukić
  */
 
 @Service
