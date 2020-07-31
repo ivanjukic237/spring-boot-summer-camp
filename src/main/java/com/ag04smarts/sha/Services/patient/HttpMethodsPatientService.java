@@ -108,6 +108,7 @@ public class HttpMethodsPatientService implements PatientService {
         patient.setSex(newPatient.getSex());
         patient.setTherapy(newPatient.getTherapy());
         patient.setSSN(newPatient.getSSN());
+        patient.setDisease(newPatient.getDisease());
 
         return patientModelAssembler.toModel(patientRepository.save(patient));
     }
