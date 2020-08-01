@@ -1,6 +1,6 @@
 package com.ag04smarts.sha.controllers.disease;
 
-import com.ag04smarts.sha.Services.disease.DiseasesService;
+import com.ag04smarts.sha.services.disease.DiseasesService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,7 +10,7 @@ import java.util.Map;
  * Controller that maps the diseases page that gives the map of all
  * diseases and the number of people having that disease. Type of map
  * is determined by the
- * {@link com.ag04smarts.sha.Services.disease.DiseasesServiceImpl}
+ * {@link com.ag04smarts.sha.services.disease.DiseasesServiceImpl}
  * configuration. Type of maps that can be shown is defined in
  * {@link com.ag04smarts.sha.config.DiseasesConfiguration}.
  *

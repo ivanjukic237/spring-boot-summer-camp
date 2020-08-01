@@ -1,6 +1,6 @@
 package com.ag04smarts.sha.controllers.patient;
 
-import com.ag04smarts.sha.Services.patient.NumberOfPatientsService;
+import com.ag04smarts.sha.services.patient.NumberOfPatientsService;
 import org.springframework.stereotype.Controller;
 
 /**

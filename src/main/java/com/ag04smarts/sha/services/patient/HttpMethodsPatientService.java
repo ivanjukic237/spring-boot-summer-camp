@@ -1,4 +1,4 @@
-package com.ag04smarts.sha.Services.patient;
+package com.ag04smarts.sha.services.patient;
 
 import com.ag04smarts.sha.controllers.patient.PatientController;
 import com.ag04smarts.sha.controllers.patient.PatientModelAssembler;

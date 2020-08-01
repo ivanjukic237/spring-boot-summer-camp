@@ -1,4 +1,4 @@
-package com.ag04smarts.sha.Services.disease;
+package com.ag04smarts.sha.services.disease;
 
 import java.util.Map;
 

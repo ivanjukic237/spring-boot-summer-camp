@@ -1,6 +1,6 @@
 package com.ag04smarts.sha.controllers.social;
 
-import com.ag04smarts.sha.Services.social.SocialService;
+import com.ag04smarts.sha.services.social.SocialService;
 import com.ag04smarts.sha.config.social.SocialWebUrls;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

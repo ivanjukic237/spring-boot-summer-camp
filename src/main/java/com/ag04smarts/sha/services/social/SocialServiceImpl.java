@@ -1,4 +1,4 @@
-package com.ag04smarts.sha.Services.social;
+package com.ag04smarts.sha.services.social;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

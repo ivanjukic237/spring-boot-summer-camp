@@ -1,4 +1,4 @@
-package com.ag04smarts.sha.Services.patient;
+package com.ag04smarts.sha.services.patient;
 
 /**
  * Interface for service classes that give the number of patients.

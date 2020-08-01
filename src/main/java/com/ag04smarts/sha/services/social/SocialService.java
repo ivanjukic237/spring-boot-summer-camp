@@ -1,4 +1,4 @@
-package com.ag04smarts.sha.Services.social;
+package com.ag04smarts.sha.services.social;
 
 /**
  * Interface for the service that returns social urls from
