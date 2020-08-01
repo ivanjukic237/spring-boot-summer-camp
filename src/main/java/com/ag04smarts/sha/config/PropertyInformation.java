@@ -1,4 +1,4 @@
-package com.ag04smarts.sha.info;
+package com.ag04smarts.sha.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +8,8 @@ import javax.annotation.Resource;
 
 /**
  * Configuration class that finds the active profiles.
+ *
+ * @author Ivan Jukić
  */
 
 @Configuration

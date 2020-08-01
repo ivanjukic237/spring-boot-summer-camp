@@ -1,6 +1,6 @@
-package com.ag04smarts.sha.controllers;
+package com.ag04smarts.sha.controllers.patient;
 
-import com.ag04smarts.sha.Services.PatientService;
+import com.ag04smarts.sha.services.patient.PatientService;
 import com.ag04smarts.sha.models.Patient;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Rest controller for http requests GET, POST, DELETE, PUT for Patient object.
  *
- * @Author Ivan Jukić
+ * @author Ivan Jukić
  */
 
 @RestController

@@ -7,7 +7,7 @@ import java.time.LocalDate;
  * Model of a patient with attributes: first name, last name, name of the therapy used on the patient,
  * date of birth, sex and SSN (Social Security Number). This class is used as an entity.
  *
- * @Author Ivan Jukić
+ * @author Ivan Jukić
  */
 
 @Entity
@@ -37,6 +37,9 @@ public class Patient {
     @Column(name="SSN", unique = true)
     private Long SSN;
 
+    @Column(name="Disease")
+    private String disease;
+
     /**
      * Default constructor for Patient;
      */
@@ -55,13 +58,14 @@ public class Patient {
      * @param SSN         Social Security Number of the patient
      */
 
-    public Patient(String firstName, String lastName, String therapy, LocalDate dateOfBirth, SexOptions sex, Long SSN) {
+    public Patient(String firstName, String lastName, String therapy, LocalDate dateOfBirth, SexOptions sex, Long SSN, String disease) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.therapy = therapy;
         this.dateOfBirth = dateOfBirth;
         this.sex = sex;
         this.SSN = SSN;
+        this.disease = disease;
     }
 
     /**
@@ -204,8 +208,30 @@ public class Patient {
     }
 
     /**
+     * Getter for the disease of the patient.
+     *
+     * @return disease of the patient
+     */
+
+    public String getDisease() {
+        return disease;
+    }
+
+    /**
+     * Sets the disease of the patient.
+     *
+     * @param disease disease of the patient
+     */
+
+    public void setDisease(String disease) {
+        this.disease = disease;
+    }
+
+    /**
      * {@inheritdoc}
      */
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -246,6 +272,7 @@ public class Patient {
                 ", dateOfBirth=" + dateOfBirth +
                 ", sex=" + sex +
                 ", SSN=" + SSN +
+                ", disease=" + disease +
                 '}';
     }
 }

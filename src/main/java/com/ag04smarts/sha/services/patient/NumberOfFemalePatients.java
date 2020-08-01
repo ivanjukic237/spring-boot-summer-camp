@@ -1,4 +1,4 @@
-package com.ag04smarts.sha.Services;
+package com.ag04smarts.sha.services.patient;
 
 import com.ag04smarts.sha.models.Patient;
 import com.ag04smarts.sha.models.SexOptions;
@@ -7,15 +7,15 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 /**
- * Service that counts the number of male patients in the patient repository.
- * Profile name is "male".
+ * Service that counts the number of female patients in the patient repository.
+ * Profile name is "female".
  *
- * @Author Ivan Jukić
+ * @author Ivan Jukić
  */
 
 @Service
-@Profile("numberOf_male")
-public class NumberOfMalePatients implements NumberOfPatientsService {
+@Profile("numberOf_female")
+public class NumberOfFemalePatients implements NumberOfPatientsService {
 
     private final PatientRepository patientRepository;
 
@@ -25,25 +25,24 @@ public class NumberOfMalePatients implements NumberOfPatientsService {
      * @param patientRepository patient repository
      */
 
-    public NumberOfMalePatients(PatientRepository patientRepository) {
+    public NumberOfFemalePatients(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
     }
 
     /**
-     * Finds and returns the number of male patients.
+     * Finds and returns the number of female patients.
      *
-     * @return number of male patients
+     * @return number of female patients
      */
 
     @Override
     public long getNumberOfPatients() {
         long counter = 0;
         for (Patient patient : patientRepository.findAll()) {
-            if (patient.getSex() == SexOptions.MALE) {
+            if (patient.getSex() == SexOptions.FEMALE) {
                 counter++;
             }
         }
         return counter;
-
     }
 }
