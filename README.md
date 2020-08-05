@@ -1,8 +1,8 @@
 # Week Three Assignment
 
-## General assingments: "I'm already felling better"
+## General assignments: "I'm already felling better"
 
-Each assingment within week three should be committed separately.  
+Each assignment within week three should be committed separately.  
 Any code completed within commit should be listed in square brackets at the beginning of commit message.  
 
 Commit message examples:  
@@ -33,7 +33,7 @@ SHA-9: Use Slf4J Lombok annotations and log some events
 SHA-10: Use @MappedSuperclass annotation for Entity inheritance
     - as you may notice Entity Doctor and Patient have some same attributes(firstName, lastName) so we can have some benefit from @MappedSuperclass and combine them into one class
 
-### Test assingments
+### Test assignments
 
 SHA-11: Use Mockito in one test 
 SCC-12: Write integration test with @DataJpaTest  
