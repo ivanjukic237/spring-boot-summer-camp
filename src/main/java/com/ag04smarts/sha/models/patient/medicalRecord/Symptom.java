@@ -13,7 +13,7 @@ public class Symptom {
     @Lob
     private String description;
 
-    //@ManyToMany(mappedBy = "symptoms")
+    @ManyToMany(mappedBy = "symptoms")
     private Set<PatientMedicalRecord> patientMedicalRecords;
 
     public Long getId() {

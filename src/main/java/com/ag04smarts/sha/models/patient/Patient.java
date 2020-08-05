@@ -33,13 +33,13 @@ public class Patient {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private PatientMedicalRecord patientMedicalRecord;
 
-    //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<PatientTreatmentHistory> patientTreatmentHistories;
 
-    //@OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     private Set<Appointment> appointments;
 
     public Patient() {

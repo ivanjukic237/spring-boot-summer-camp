@@ -17,10 +17,10 @@ public class Doctor {
     private String lastName;
     private DoctorExpertise doctorExpertise;
 
-    //@OneToMany
+    @OneToMany
     private Set<PatientTreatmentHistory> patientTreatmentHistories;
 
-    //@OneToMany
+    @OneToMany
     private Set<Appointment> appointments;
 
     public Doctor() {

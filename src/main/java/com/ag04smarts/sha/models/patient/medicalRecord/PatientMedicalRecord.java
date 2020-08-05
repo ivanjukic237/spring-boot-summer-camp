@@ -12,12 +12,12 @@ public class PatientMedicalRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@OneToOne
+    @OneToOne
     private Patient patient;
     private String diagnosis;
     private String treatment;
 
-    //@ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     private Set<Symptom> symptoms;
 
     public Long getId() {

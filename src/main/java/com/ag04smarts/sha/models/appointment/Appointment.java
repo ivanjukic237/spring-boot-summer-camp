@@ -13,10 +13,10 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@ManyToOne
+    @ManyToOne
     private Patient patient;
 
-    //@ManyToOne
+    @ManyToOne
     private Doctor doctor;
 
     private Date appointmentDate;
