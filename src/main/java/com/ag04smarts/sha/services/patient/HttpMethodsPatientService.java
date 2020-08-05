@@ -3,7 +3,7 @@ package com.ag04smarts.sha.services.patient;
 import com.ag04smarts.sha.controllers.patient.PatientController;
 import com.ag04smarts.sha.controllers.patient.PatientModelAssembler;
 import com.ag04smarts.sha.controllers.patient.PatientNotFoundException;
-import com.ag04smarts.sha.models.Patient;
+import com.ag04smarts.sha.models.patient.Patient;
 import com.ag04smarts.sha.repositories.PatientRepository;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -104,11 +104,12 @@ public class HttpMethodsPatientService implements PatientService {
 
         patient.setFirstName(newPatient.getFirstName());
         patient.setLastName(newPatient.getLastName());
-        patient.setDateOfBirth(newPatient.getDateOfBirth());
-        patient.setSex(newPatient.getSex());
-        patient.setTherapy(newPatient.getTherapy());
-        patient.setSSN(newPatient.getSSN());
-        patient.setDisease(newPatient.getDisease());
+        patient.setAge(newPatient.getAge());
+        patient.setEmail(newPatient.getEmail());
+        patient.setPhoneNumber(newPatient.getPhoneNumber());
+        patient.setGender(newPatient.getGender());
+        patient.setEnlistmentDate(newPatient.getEnlistmentDate());
+        patient.setStatus(newPatient.getStatus());
 
         return patientModelAssembler.toModel(patientRepository.save(patient));
     }

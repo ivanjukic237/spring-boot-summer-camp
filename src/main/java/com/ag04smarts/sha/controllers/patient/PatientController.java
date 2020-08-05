@@ -1,7 +1,8 @@
 package com.ag04smarts.sha.controllers.patient;
 
+import com.ag04smarts.sha.models.patient.Patient;
 import com.ag04smarts.sha.services.patient.PatientService;
-import com.ag04smarts.sha.models.Patient;
+
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.*;

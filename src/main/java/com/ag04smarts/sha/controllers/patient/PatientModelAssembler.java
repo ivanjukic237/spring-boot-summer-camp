@@ -1,6 +1,6 @@
 package com.ag04smarts.sha.controllers.patient;
 
-import com.ag04smarts.sha.models.Patient;
+import com.ag04smarts.sha.models.patient.Patient;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
