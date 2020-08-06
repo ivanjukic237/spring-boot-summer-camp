@@ -1,6 +1,7 @@
 package com.ag04smarts.sha.models.patient.medicalRecord;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -17,6 +18,10 @@ public class Symptom {
     private String description;
 
     @ManyToMany(mappedBy = "symptoms")
+    @EqualsAndHashCode.Exclude
     private Set<PatientMedicalRecord> patientMedicalRecords;
 
+    public Symptom(String description) {
+        this.description = description;
+    }
 }

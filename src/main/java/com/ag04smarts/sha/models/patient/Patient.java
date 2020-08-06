@@ -3,6 +3,8 @@ package com.ag04smarts.sha.models.patient;
 import com.ag04smarts.sha.models.appointment.Appointment;
 import com.ag04smarts.sha.models.patient.medicalRecord.PatientMedicalRecord;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -35,14 +37,35 @@ public class Patient {
     private Status status;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private PatientMedicalRecord patientMedicalRecord;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Set<PatientTreatmentHistory> patientTreatmentHistories;
 
     @OneToMany(fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Set<Appointment> appointments;
 
+    public Patient(String firstName, String lastName, String email,
+                   Integer age, String phoneNumber, Gender gender,
+                   Date enlistmentDate, Status status) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.age = age;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+        this.enlistmentDate = enlistmentDate;
+        this.status = status;
+    }
+
+    public Patient() {
+    }
 }
 
 
