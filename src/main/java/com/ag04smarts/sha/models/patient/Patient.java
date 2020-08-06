@@ -39,16 +39,19 @@ public class Patient {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonIgnore
     private PatientMedicalRecord patientMedicalRecord;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonIgnore
     private Set<PatientTreatmentHistory> patientTreatmentHistories;
 
     @OneToMany(fetch = FetchType.LAZY)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonIgnore
     private Set<Appointment> appointments;
 
     public Patient(String firstName, String lastName, String email,
