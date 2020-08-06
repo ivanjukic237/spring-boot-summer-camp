@@ -2,6 +2,7 @@ package com.ag04smarts.sha.models.patient;
 
 import com.ag04smarts.sha.models.appointment.Appointment;
 import com.ag04smarts.sha.models.patient.medicalRecord.PatientMedicalRecord;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -69,6 +70,17 @@ public class Patient {
 
     public Patient() {
     }
+
+    @PrePersist
+    private void prePersistFunction() {
+        System.out.println("Starting pre persist function.");
+    }
+
+    @PreUpdate
+    private void preUpdateFunction() {
+        System.out.println("Starting pre update function.");
+    }
+
 }
 
 
