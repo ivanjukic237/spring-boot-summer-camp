@@ -3,6 +3,7 @@ package com.ag04smarts.sha.controllers.patient;
 import com.ag04smarts.sha.models.patient.Patient;
 import com.ag04smarts.sha.services.patient.PatientService;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Ivan Jukić
  */
 
+@Slf4j
 @RestController
 public class PatientController {
 
@@ -36,6 +38,7 @@ public class PatientController {
 
     @GetMapping("/api/patient")
     public CollectionModel<EntityModel<Patient>> all() {
+        log.info("Getting /api/patient (list of all patients)");
         return patientService.mapEveryPatient();
     }
 
