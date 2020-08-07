@@ -1,5 +1,6 @@
 package com.ag04smarts.sha.models.patient;
 
+import com.ag04smarts.sha.models.Person;
 import com.ag04smarts.sha.models.appointment.Appointment;
 import com.ag04smarts.sha.models.patient.medicalRecord.PatientMedicalRecord;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,14 +18,8 @@ import java.util.Set;
 
 @Data
 @Entity
-public class Patient {
+public class Patient extends Person {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
-    private String firstName;
-    private String lastName;
     private String email;
     private Integer age;
     private String phoneNumber;
@@ -58,8 +53,8 @@ public class Patient {
     public Patient(String firstName, String lastName, String email,
                    Integer age, String phoneNumber, Gender gender,
                    Date enlistmentDate, Status status) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
         this.email = email;
         this.age = age;
         this.phoneNumber = phoneNumber;

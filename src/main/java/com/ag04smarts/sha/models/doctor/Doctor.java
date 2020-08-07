@@ -1,5 +1,6 @@
 package com.ag04smarts.sha.models.doctor;
 
+import com.ag04smarts.sha.models.Person;
 import com.ag04smarts.sha.models.appointment.Appointment;
 import com.ag04smarts.sha.models.patient.PatientTreatmentHistory;
 import lombok.Data;
@@ -11,14 +12,7 @@ import java.util.Set;
 
 @Data
 @Entity
-public class Doctor {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String firstName;
-    private String lastName;
+public class Doctor extends Person {
 
     @Enumerated(EnumType.STRING)
     private DoctorExpertise doctorExpertise;
@@ -34,8 +28,8 @@ public class Doctor {
     private Set<Appointment> appointments;
 
     public Doctor(String firstName, String lastName, DoctorExpertise doctorExpertise) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
         this.doctorExpertise = doctorExpertise;
     }
 
