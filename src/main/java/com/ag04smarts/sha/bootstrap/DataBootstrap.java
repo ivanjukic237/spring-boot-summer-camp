@@ -55,7 +55,6 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
         Symptom symptom5 = new Symptom("headache");
 
         Set<Symptom> symptoms = Stream.of(symptom1, symptom2, symptom3, symptom4, symptom5).collect(Collectors.toSet());
-        symptomRepository.saveAll(symptoms);
 
         Doctor doctor1 = new Doctor("Doktor", "Doktorić", DoctorExpertise.GENERAL_DOCTOR);
 
@@ -128,20 +127,20 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
         //patient 2 medical record
         PatientMedicalRecord patient2MedicalRecord = new PatientMedicalRecord(patient2, "Flu", "Something");
         Set<Symptom> patient2Symptoms = new HashSet<>();
-        patient1Symptoms.add(symptom1);
-        patient1Symptoms.add(symptom2);
-        patient1Symptoms.add(symptom5);
-        patient1MedicalRecord.setSymptoms(patient2Symptoms);
+        patient2Symptoms.add(symptom1);
+        patient2Symptoms.add(symptom2);
+        patient2Symptoms.add(symptom5);
+        patient2MedicalRecord.setSymptoms(patient2Symptoms);
 
         patient2.setPatientMedicalRecord(patient2MedicalRecord);
 
         //patient 3 medical record
         PatientMedicalRecord patient3MedicalRecord = new PatientMedicalRecord(patient3, "Disease", "Treatment");
         Set<Symptom> patient3Symptoms = new HashSet<>();
-        patient1Symptoms.add(symptom3);
-        patient1Symptoms.add(symptom4);
-        patient1Symptoms.add(symptom5);
-        patient1MedicalRecord.setSymptoms(patient3Symptoms);
+        patient3Symptoms.add(symptom3);
+        patient3Symptoms.add(symptom4);
+        patient3Symptoms.add(symptom5);
+        patient3MedicalRecord.setSymptoms(patient3Symptoms);
 
         patient3.setPatientMedicalRecord(patient3MedicalRecord);
 
@@ -158,6 +157,8 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
         patientRepository.save(patient1);
         patientRepository.save(patient2);
         patientRepository.save(patient3);
+
+        symptomRepository.saveAll(symptoms);
 
 
     }
