@@ -35,8 +35,12 @@ public class SHAApplication {
         PatientRepository patientRepository = (PatientRepository) context.getBean("patientRepository");
 
         System.out.println("Find by age and enlistment date: ");
-        System.out.println(patientRepository.findAllByAgeGreaterThanAndEnlistmentDateAfter(21, new Date(2020, 1, 1)));
+        System.out.println(patientRepository.findAllByAgeGreaterThanAndEnlistmentDateAfter(21, new Date(2020 - 1900, 1, 1)));
         System.out.println();
+
+        System.out.println("Given date and age: ");
+        System.out.println(patientRepository.findAllByGivenAgeDate());
+
         System.out.println("Number of patients in repository: " + patientRepository.count());
         for (Patient patient : patientRepository.findAll()) {
             System.out.println(patient);
