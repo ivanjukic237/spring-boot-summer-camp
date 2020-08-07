@@ -62,19 +62,19 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
         Patient patient1 = new Patient(
                 "Ivan", "Ivić", "ivic@net.hr",
                 50, "091888888", Gender.MALE,
-                new Date(2020, 8, 6),
+                new Date(2020 - 1900, 5, 6),
                 Status.UNDER_DIAGNOSIS);
 
         Patient patient2 = new Patient(
                 "Ivana", "Ivić", "ivicIvana@net.hr",
                 48, "091777777", Gender.FEMALE,
-                new Date(2020, 8, 1),
+                new Date(2020 - 1900, 5, 1),
                 Status.DIAGNOSED);
 
         Patient patient3 = new Patient(
                 "Marko", "Markić", "marko@marko.com",
                 18, "0123132", Gender.MALE,
-                new Date(2020, 8, 4),
+                new Date(2020 - 1900, 1, 4),
                 Status.ENLISTED
         );
 
