@@ -22,7 +22,10 @@ public class PatientMedicalRecord {
     private String diagnosis;
     private String treatment;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "patientMedicalRecord_symptom",
+            joinColumns = @JoinColumn(name = "patientMedicalRecord_id"),
+            inverseJoinColumns = @JoinColumn(name = "symptom_id"))
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Set<Symptom> symptoms;
