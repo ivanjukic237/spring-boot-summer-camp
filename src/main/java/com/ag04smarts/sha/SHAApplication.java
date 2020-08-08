@@ -1,6 +1,7 @@
 package com.ag04smarts.sha;
 
 import com.ag04smarts.sha.models.patient.Patient;
+import com.ag04smarts.sha.models.patient.medicalRecord.PatientMedicalRecord;
 import com.ag04smarts.sha.models.patient.medicalRecord.Symptom;
 import com.ag04smarts.sha.repositories.PatientMedicalRecordRepository;
 import com.ag04smarts.sha.repositories.PatientRepository;
@@ -40,6 +41,11 @@ public class SHAApplication {
 
         System.out.println("Given date and age: ");
         System.out.println(patientRepository.findAllByGivenAgeDate());
+
+        PatientMedicalRecordRepository patientMedicalRecordRepository = (PatientMedicalRecordRepository) context.getBean("patientMedicalRecordRepository");
+
+        System.out.println("BY SYMPTOMS: ");
+        System.out.println(patientMedicalRecordRepository.getBySymptom());
 
         System.out.println("Number of patients in repository: " + patientRepository.count());
         for (Patient patient : patientRepository.findAll()) {
