@@ -42,10 +42,8 @@ public class SHAApplication {
         System.out.println("Given date and age: ");
         System.out.println(patientRepository.findAllByGivenAgeDate());
 
-        PatientMedicalRecordRepository patientMedicalRecordRepository = (PatientMedicalRecordRepository) context.getBean("patientMedicalRecordRepository");
-
         System.out.println("BY SYMPTOMS: ");
-        System.out.println(patientMedicalRecordRepository.getBySymptom());
+        System.out.println(patientRepository.getBySymptom());
 
         System.out.println("Number of patients in repository: " + patientRepository.count());
         for (Patient patient : patientRepository.findAll()) {
