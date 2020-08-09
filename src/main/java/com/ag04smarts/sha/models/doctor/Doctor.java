@@ -14,6 +14,10 @@ import java.util.Set;
 @Entity
 public class Doctor extends Person {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     @Enumerated(EnumType.STRING)
     private DoctorExpertise doctorExpertise;
 
