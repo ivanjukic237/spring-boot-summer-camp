@@ -1,6 +1,6 @@
 package com.ag04smarts.sha.services.patient;
 
-import com.ag04smarts.sha.models.Patient;
+import com.ag04smarts.sha.models.patient.Patient;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 
