@@ -3,10 +3,12 @@ package com.ag04smarts.sha.models.patient;
 import com.ag04smarts.sha.models.Person;
 import com.ag04smarts.sha.models.appointment.Appointment;
 import com.ag04smarts.sha.models.patient.medicalRecord.PatientMedicalRecord;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -31,6 +33,7 @@ public class Patient extends Person {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date enlistmentDate;
 
     @Enumerated(EnumType.STRING)
