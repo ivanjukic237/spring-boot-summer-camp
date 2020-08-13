@@ -3,12 +3,16 @@ package com.ag04smarts.sha.services.patient;
 import com.ag04smarts.sha.controllers.patient.PatientController;
 import com.ag04smarts.sha.controllers.patient.PatientModelAssembler;
 import com.ag04smarts.sha.controllers.patient.PatientNotFoundException;
+import com.ag04smarts.sha.exceptions.ImageUploadException;
 import com.ag04smarts.sha.models.patient.Patient;
 import com.ag04smarts.sha.repositories.PatientRepository;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -123,5 +127,17 @@ public class HttpMethodsPatientService implements PatientService {
     @Override
     public void deletePatient(long id) {
         patientRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void saveImageFile(Long id, MultipartFile multipartFile) {
+        try{
+            Patient patient = patientRepository.findById(id).get();
+            patient.setImage(multipartFile.getBytes());
+            patientRepository.save(patient);
+        } catch (IOException ex){
+            throw new ImageUploadException();
+        }
     }
 }

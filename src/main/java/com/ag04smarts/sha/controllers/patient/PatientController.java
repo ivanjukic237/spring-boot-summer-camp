@@ -7,6 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.websocket.server.PathParam;
 
 /**
  * Rest controller for http requests GET, POST, DELETE, PUT for Patient object.
@@ -88,5 +91,10 @@ public class PatientController {
     @DeleteMapping("/api/patient/{id}")
     public void deletePatient(@PathVariable Long id) {
         patientService.deletePatient(id);
+    }
+
+    @PostMapping("api/patient/uploadImage")
+    public void uploadImage(@PathParam("id") Long id, @RequestParam("imagefile") MultipartFile multipartFile) {
+        patientService.saveImageFile(id, multipartFile);
     }
 }

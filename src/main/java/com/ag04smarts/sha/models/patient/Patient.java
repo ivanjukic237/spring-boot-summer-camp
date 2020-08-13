@@ -38,6 +38,9 @@ public class Patient extends Person {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @Lob
+    private byte[] image;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
