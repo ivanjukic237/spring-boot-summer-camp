@@ -21,15 +21,15 @@ public class EnlistmentForm {
 
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "{NotBlank.enlistmentForm.firstName}")
     @Size(min = 1, max = 255)
     private String firstName;
 
-    @NotBlank
+    @NotBlank(message = "{NotBlank.enlistmentForm.lastName}")
     @Size(min = 1, max = 255)
     private String lastName;
 
-    @Email(message = "Email should be valid.")
+    @Email(message = "{Email.enlistmentForm}")
     private String email;
 
     @Min(0)
