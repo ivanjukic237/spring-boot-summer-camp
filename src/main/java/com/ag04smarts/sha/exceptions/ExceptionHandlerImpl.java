@@ -31,7 +31,7 @@ public class ExceptionHandlerImpl {
 
     @ResponseBody
     @ExceptionHandler(ImageUploadException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     String imageUploadHandler(ImageUploadException ex){
         return ex.getMessage();
     }
