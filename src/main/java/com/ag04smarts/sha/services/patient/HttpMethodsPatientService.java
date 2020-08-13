@@ -134,10 +134,15 @@ public class HttpMethodsPatientService implements PatientService {
     public void saveImageFile(Long id, MultipartFile multipartFile) {
         try{
             Patient patient = patientRepository.findById(id).get();
+
+            if(!multipartFile.getContentType().contains("image/")){
+                throw new ImageUploadException("File is not an image.");
+            }
+
             patient.setImage(multipartFile.getBytes());
             patientRepository.save(patient);
         } catch (IOException ex){
-            throw new ImageUploadException();
+            throw new ImageUploadException("Image couldn't be uploaded.");
         }
     }
 }
