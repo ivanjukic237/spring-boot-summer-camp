@@ -4,13 +4,8 @@ import com.ag04smarts.sha.commands.EnlistmentForm;
 import com.ag04smarts.sha.models.patient.Patient;
 import com.sun.istack.Nullable;
 import lombok.Synchronized;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Component
 public class EnlistmentFormToPatient implements Converter<EnlistmentForm, Patient> {

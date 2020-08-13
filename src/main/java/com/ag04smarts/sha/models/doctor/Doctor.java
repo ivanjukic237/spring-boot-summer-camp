@@ -3,6 +3,7 @@ package com.ag04smarts.sha.models.doctor;
 import com.ag04smarts.sha.models.Person;
 import com.ag04smarts.sha.models.appointment.Appointment;
 import com.ag04smarts.sha.models.patient.PatientTreatmentHistory;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -24,11 +25,13 @@ public class Doctor extends Person {
     @OneToMany
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonIgnore
     private Set<PatientTreatmentHistory> patientTreatmentHistories;
 
     @OneToMany
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @JsonIgnore
     private Set<Appointment> appointments;
 
     public Doctor(String firstName, String lastName, DoctorExpertise doctorExpertise) {

@@ -3,7 +3,6 @@ package com.ag04smarts.sha.models.patient;
 import com.ag04smarts.sha.models.Person;
 import com.ag04smarts.sha.models.appointment.Appointment;
 import com.ag04smarts.sha.models.patient.medicalRecord.PatientMedicalRecord;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
