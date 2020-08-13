@@ -1,7 +1,6 @@
 package com.ag04smarts.sha.converters;
 
 import com.ag04smarts.sha.commands.AppointmentForm;
-import com.ag04smarts.sha.controllers.patient.PatientNotFoundException;
 import com.ag04smarts.sha.models.appointment.Appointment;
 import com.ag04smarts.sha.repositories.DoctorRepository;
 import com.ag04smarts.sha.repositories.PatientRepository;

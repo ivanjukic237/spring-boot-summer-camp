@@ -2,7 +2,7 @@ package com.ag04smarts.sha.services.patient;
 
 import com.ag04smarts.sha.controllers.patient.PatientController;
 import com.ag04smarts.sha.controllers.patient.PatientModelAssembler;
-import com.ag04smarts.sha.controllers.patient.PatientNotFoundException;
+import com.ag04smarts.sha.exceptions.PatientNotFoundException;
 import com.ag04smarts.sha.exceptions.ImageUploadException;
 import com.ag04smarts.sha.models.patient.Patient;
 import com.ag04smarts.sha.repositories.PatientRepository;

@@ -1,4 +1,4 @@
-package com.ag04smarts.sha.controllers.patient;
+package com.ag04smarts.sha.exceptions;
 
 /**
  * Custom exception class for when the http methods can't find the patient in
