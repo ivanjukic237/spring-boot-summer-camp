@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 public class EnlistmentController {
 
@@ -18,7 +20,7 @@ public class EnlistmentController {
     }
 
     @PostMapping("api/enlistmentForm")
-    public EntityModel<Patient> newPatient(@ModelAttribute EnlistmentForm enlistmentForm) {
+    public EntityModel<Patient> newPatient(@Valid @ModelAttribute EnlistmentForm enlistmentForm) {
         return enlistmentFormService.newPatient(enlistmentForm);
     }
 }
