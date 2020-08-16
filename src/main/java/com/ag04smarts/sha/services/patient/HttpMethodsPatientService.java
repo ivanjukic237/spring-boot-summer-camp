@@ -132,9 +132,12 @@ public class HttpMethodsPatientService implements PatientService {
     @Override
     @Transactional
     public void saveImageFile(Long id, MultipartFile multipartFile) {
-        try {
-            Patient patient = patientRepository.findById(id).get();
 
+        Patient patient = patientRepository.findById(id).
+                orElseThrow(() -> new
+                        PersonNotFoundException(id, "patient"));
+
+        try {
             if (!multipartFile.getContentType().contains("image/")) {
                 throw new ImageUploadException("File is not an image.");
             }
