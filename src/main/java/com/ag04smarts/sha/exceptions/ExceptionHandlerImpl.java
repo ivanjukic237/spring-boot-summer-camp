@@ -32,7 +32,15 @@ public class ExceptionHandlerImpl {
     @ResponseBody
     @ExceptionHandler(ImageUploadException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String imageUploadHandler(ImageUploadException ex){
+    String imageUploadHandler(ImageUploadException ex) {
         return ex.getMessage();
     }
+
+    @ResponseBody
+    @ExceptionHandler(UpdateException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    String updateHandler(UpdateException ex) {
+        return ex.getMessage();
+    }
+
 }

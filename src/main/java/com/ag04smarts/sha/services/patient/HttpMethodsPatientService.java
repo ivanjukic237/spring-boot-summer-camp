@@ -2,10 +2,12 @@ package com.ag04smarts.sha.services.patient;
 
 import com.ag04smarts.sha.controllers.patient.PatientController;
 import com.ag04smarts.sha.controllers.patient.PatientModelAssembler;
-import com.ag04smarts.sha.exceptions.PersonNotFoundException;
 import com.ag04smarts.sha.exceptions.ImageUploadException;
+import com.ag04smarts.sha.exceptions.PersonNotFoundException;
+import com.ag04smarts.sha.exceptions.UpdateException;
 import com.ag04smarts.sha.models.patient.Patient;
 import com.ag04smarts.sha.repositories.PatientRepository;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -106,14 +109,24 @@ public class HttpMethodsPatientService implements PatientService {
                 orElseThrow(() -> new
                         PersonNotFoundException(id, "patient"));
 
-        patient.setFirstName(newPatient.getFirstName());
-        patient.setLastName(newPatient.getLastName());
-        patient.setAge(newPatient.getAge());
-        patient.setEmail(newPatient.getEmail());
-        patient.setPhoneNumber(newPatient.getPhoneNumber());
-        patient.setGender(newPatient.getGender());
-        patient.setEnlistmentDate(newPatient.getEnlistmentDate());
-        patient.setStatus(newPatient.getStatus());
+        //have to change the id so it won't change the patient object id
+        newPatient.setId(id);
+
+        //using PropertyUtils to get all newPatient attributes, filtering by
+        //non null values and changing all patient attributes
+        try {
+            PropertyUtils.describe(newPatient).entrySet().stream()
+                    .filter(e -> e.getValue() != null)
+                    .forEach(e -> {
+                        try {
+                            PropertyUtils.setProperty(patient, e.getKey(), e.getValue());
+                        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException illegalAccessException) {
+                            throw new UpdateException();
+                        }
+                    });
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            throw new UpdateException();
+        }
 
         return patientModelAssembler.toModel(patientRepository.save(patient));
     }
