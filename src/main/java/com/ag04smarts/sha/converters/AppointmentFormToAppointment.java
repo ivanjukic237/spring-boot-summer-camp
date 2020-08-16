@@ -1,6 +1,7 @@
 package com.ag04smarts.sha.converters;
 
 import com.ag04smarts.sha.commands.AppointmentForm;
+import com.ag04smarts.sha.exceptions.PersonNotFoundException;
 import com.ag04smarts.sha.models.appointment.Appointment;
 import com.ag04smarts.sha.repositories.DoctorRepository;
 import com.ag04smarts.sha.repositories.PatientRepository;
@@ -27,8 +28,17 @@ public class AppointmentFormToAppointment implements Converter<AppointmentForm, 
         final Appointment appointment = new Appointment();
 
         appointment.setAppointmentDate(source.getAppointmentDate());
-        appointment.setDoctor(doctorRepository.findById(source.getDoctorId()).orElseThrow());
-        appointment.setPatient(patientRepository.findById(source.getPatientId()).orElseThrow());
+        
+        appointment.setDoctor(doctorRepository.findById(
+                source.getDoctorId()).orElseThrow(
+                () -> new PersonNotFoundException(source.getDoctorId(), "doctor")
+                )
+        );
+        appointment.setPatient(patientRepository.findById(
+                source.getPatientId()).orElseThrow(
+                () -> new PersonNotFoundException(source.getPatientId(), "patient")
+                )
+        );
 
         return appointment;
     }

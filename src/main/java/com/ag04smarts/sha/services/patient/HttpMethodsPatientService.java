@@ -2,7 +2,7 @@ package com.ag04smarts.sha.services.patient;
 
 import com.ag04smarts.sha.controllers.patient.PatientController;
 import com.ag04smarts.sha.controllers.patient.PatientModelAssembler;
-import com.ag04smarts.sha.exceptions.PatientNotFoundException;
+import com.ag04smarts.sha.exceptions.PersonNotFoundException;
 import com.ag04smarts.sha.exceptions.ImageUploadException;
 import com.ag04smarts.sha.models.patient.Patient;
 import com.ag04smarts.sha.repositories.PatientRepository;
@@ -84,7 +84,7 @@ public class HttpMethodsPatientService implements PatientService {
     public EntityModel<Patient> getPatient(long id) {
         Patient patient = patientRepository.findById(id).
                 orElseThrow(() -> new
-                        PatientNotFoundException(id));
+                        PersonNotFoundException(id, "patient"));
         return patientModelAssembler.toModel(patient);
     }
 
@@ -104,7 +104,7 @@ public class HttpMethodsPatientService implements PatientService {
 
         Patient patient = patientRepository.findById(id).
                 orElseThrow(() -> new
-                        PatientNotFoundException(id));
+                        PersonNotFoundException(id, "patient"));
 
         patient.setFirstName(newPatient.getFirstName());
         patient.setLastName(newPatient.getLastName());

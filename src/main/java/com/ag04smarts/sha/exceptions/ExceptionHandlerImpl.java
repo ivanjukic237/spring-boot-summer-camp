@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ExceptionHandlerImpl {
 
     @ResponseBody
-    @ExceptionHandler(PatientNotFoundException.class)
+    @ExceptionHandler(PersonNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String patientNotFoundHandler(PatientNotFoundException ex) {
+    String patientNotFoundHandler(PersonNotFoundException ex) {
         return ex.getMessage();
     }
 
