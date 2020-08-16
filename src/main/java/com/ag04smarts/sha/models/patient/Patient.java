@@ -39,7 +39,7 @@ public class Patient extends Person {
     private Status status;
 
     @Lob
-    private byte[] image;
+    private Byte[] image;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @EqualsAndHashCode.Exclude

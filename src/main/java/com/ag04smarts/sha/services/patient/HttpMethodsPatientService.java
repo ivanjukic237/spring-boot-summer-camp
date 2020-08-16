@@ -132,16 +132,24 @@ public class HttpMethodsPatientService implements PatientService {
     @Override
     @Transactional
     public void saveImageFile(Long id, MultipartFile multipartFile) {
-        try{
+        try {
             Patient patient = patientRepository.findById(id).get();
 
-            if(!multipartFile.getContentType().contains("image/")){
+            if (!multipartFile.getContentType().contains("image/")) {
                 throw new ImageUploadException("File is not an image.");
             }
 
-            patient.setImage(multipartFile.getBytes());
+            //Wrapping the byte[] array
+            byte[] multipartFileByteArray = multipartFile.getBytes();
+            Byte[] wrappedByteArray = new Byte[multipartFileByteArray.length];
+
+            for (int i = 0; i < multipartFileByteArray.length; i++) {
+                wrappedByteArray[i] = multipartFileByteArray[i];
+            }
+
+            patient.setImage(wrappedByteArray);
             patientRepository.save(patient);
-        } catch (IOException ex){
+        } catch (IOException ex) {
             throw new ImageUploadException("Image couldn't be uploaded.");
         }
     }
