@@ -28,7 +28,7 @@ public class AppointmentFormToAppointment implements Converter<AppointmentForm, 
         final Appointment appointment = new Appointment();
 
         appointment.setAppointmentDate(source.getAppointmentDate());
-        
+
         appointment.setDoctor(doctorRepository.findById(
                 source.getDoctorId()).orElseThrow(
                 () -> new PersonNotFoundException(source.getDoctorId(), "doctor")

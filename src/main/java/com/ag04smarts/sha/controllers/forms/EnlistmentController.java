@@ -6,6 +6,7 @@ import com.ag04smarts.sha.services.forms.EnlistmentFormService;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -20,7 +21,7 @@ public class EnlistmentController {
     }
 
     @PostMapping("api/enlistmentForm")
-    public EntityModel<Patient> newPatient(@Valid @ModelAttribute EnlistmentForm enlistmentForm) {
+    public EntityModel<Patient> newPatient(@RequestBody @Valid EnlistmentForm enlistmentForm) {
         return enlistmentFormService.newPatient(enlistmentForm);
     }
 }
