@@ -40,6 +40,10 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.apache.commons/commons-math3
 	compile group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
 
+	// https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils
+	compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.4'
+
+
 }
 
 test {
