@@ -3,6 +3,7 @@ package com.ag04smarts.sha.services.patient;
 import com.ag04smarts.sha.models.patient.Patient;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Service for replacing, getting and deleting patients.
@@ -55,6 +56,8 @@ public interface PatientService {
      */
 
     void deletePatient(long id);
+
+    void saveImageFile(Long id, MultipartFile multipartFile);
 
 
 }
