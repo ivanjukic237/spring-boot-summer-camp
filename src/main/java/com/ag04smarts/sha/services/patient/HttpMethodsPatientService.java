@@ -139,7 +139,12 @@ public class HttpMethodsPatientService implements PatientService {
 
     @Override
     public void deletePatient(long id) {
-        patientRepository.deleteById(id);
+        patientRepository.delete(
+                patientRepository.findById(id)
+                        .orElseThrow(
+                                () -> new PersonNotFoundException(id, "patient")
+                        )
+        );
     }
 
     @Override

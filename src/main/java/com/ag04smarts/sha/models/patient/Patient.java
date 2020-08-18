@@ -47,7 +47,7 @@ public class Patient extends Person {
     @JsonIgnore
     private PatientMedicalRecord patientMedicalRecord;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "patient")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonIgnore

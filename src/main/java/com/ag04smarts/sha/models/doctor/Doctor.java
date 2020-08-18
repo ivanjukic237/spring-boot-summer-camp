@@ -22,7 +22,7 @@ public class Doctor extends Person {
     @Enumerated(EnumType.STRING)
     private DoctorExpertise doctorExpertise;
 
-    @OneToMany
+    @OneToMany(mappedBy = "doctor")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonIgnore
