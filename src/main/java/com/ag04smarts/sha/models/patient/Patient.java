@@ -4,6 +4,7 @@ import com.ag04smarts.sha.models.Person;
 import com.ag04smarts.sha.models.appointment.Appointment;
 import com.ag04smarts.sha.models.patient.medicalRecord.PatientMedicalRecord;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -39,6 +40,8 @@ public class Patient extends Person {
     private Status status;
 
     @Lob
+    //It has to be a four letter String so it can be in Base64.
+    @ApiModelProperty(example = "1234")
     private Byte[] image;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
