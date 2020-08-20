@@ -37,7 +37,7 @@ public interface PatientService {
      * @return patient for a given id
      */
 
-    EntityModel<Patient> getPatient(long id);
+    EntityModel<Patient> getPatient(Long id);
 
     /**
      * Replaces a patient for a given id for a new given patient.
@@ -47,7 +47,7 @@ public interface PatientService {
      * @return new patient entity
      */
 
-    EntityModel<Patient> replacePatient(Patient newPatient, long id);
+    EntityModel<Patient> replacePatient(Patient newPatient, Long id);
 
     /**
      * Delete a patient for a given id.
@@ -55,7 +55,7 @@ public interface PatientService {
      * @param id id of the patient to be deleted
      */
 
-    void deletePatient(long id);
+    void deletePatient(Long id);
 
     void saveImageFile(Long id, MultipartFile multipartFile);
 

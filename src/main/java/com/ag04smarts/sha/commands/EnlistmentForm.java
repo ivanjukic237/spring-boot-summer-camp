@@ -2,12 +2,12 @@ package com.ag04smarts.sha.commands;
 
 import com.ag04smarts.sha.models.patient.Gender;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.*;
-
 
 @Getter
 @Setter
@@ -25,6 +25,7 @@ public class EnlistmentForm {
     private String lastName;
 
     @Email(message = "{Email.enlistmentForm}")
+    @ApiModelProperty(example = "email@email.com")
     private String email;
 
     @Min(0)

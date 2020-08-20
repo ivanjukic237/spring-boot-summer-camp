@@ -84,7 +84,7 @@ public class HttpMethodsPatientService implements PatientService {
      */
 
     @Override
-    public EntityModel<Patient> getPatient(long id) {
+    public EntityModel<Patient> getPatient(Long id) {
         Patient patient = patientRepository.findById(id).
                 orElseThrow(() -> new
                         PersonNotFoundException(id, "patient"));
@@ -103,7 +103,7 @@ public class HttpMethodsPatientService implements PatientService {
      */
 
     @Override
-    public EntityModel<Patient> replacePatient(Patient newPatient, long id) {
+    public EntityModel<Patient> replacePatient(Patient newPatient, Long id) {
 
         Patient patient = patientRepository.findById(id).
                 orElseThrow(() -> new
@@ -138,8 +138,13 @@ public class HttpMethodsPatientService implements PatientService {
      */
 
     @Override
-    public void deletePatient(long id) {
-        patientRepository.deleteById(id);
+    public void deletePatient(Long id) {
+        patientRepository.delete(
+                patientRepository.findById(id)
+                        .orElseThrow(
+                                () -> new PersonNotFoundException(id, "patient")
+                        )
+        );
     }
 
     @Override
