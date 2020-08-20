@@ -24,7 +24,7 @@ public class EnlistmentController {
     }
 
     @ApiOperation(value = "Adds a new patient.")
-    @PostMapping("api/enlistmentForm")
+    @PostMapping("api/enlistment")
     public EntityModel<Patient> newPatient(@RequestBody @Valid EnlistmentForm enlistmentForm) {
         return enlistmentFormService.newPatient(enlistmentForm);
     }
