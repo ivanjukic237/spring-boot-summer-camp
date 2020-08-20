@@ -20,7 +20,7 @@ public class AppointmentController {
     }
 
     @ApiOperation(value = "Adds a new appointment.")
-    @PostMapping("api/newAppointment")
+    @PostMapping("api/appointment")
     public Appointment newAppointment(@RequestBody AppointmentForm appointmentForm) {
         return appointmentFormService.newAppointment(appointmentForm);
     }
