@@ -100,7 +100,7 @@ public class PatientController {
     }
 
     @ApiOperation(value = "Sets the image of a patient for a given patient id.", notes = "Only image files are permitted.")
-    @PostMapping("api/patient/uploadImage/{id}")
+    @PostMapping("api/patient/image/{id}")
     public void uploadImage(@PathVariable Long id, @RequestParam("imagefile") MultipartFile multipartFile) {
         patientService.saveImageFile(id, multipartFile);
     }
