@@ -1,7 +1,7 @@
 package com.ag04smarts.sha.controllers.patient;
 
+import com.ag04smarts.sha.services.EmailService;
 import com.ag04smarts.sha.services.patient.PatientService;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -17,12 +17,13 @@ class PatientControllerTest {
     @Mock
     PatientService patientService;
 
+    EmailService emailService;
     PatientController patientController;
 
     @BeforeEach
     public void init() {
         MockitoAnnotations.initMocks(this);
-        patientController = new PatientController(patientService);
+        patientController = new PatientController(patientService, emailService);
     }
 
     @Test

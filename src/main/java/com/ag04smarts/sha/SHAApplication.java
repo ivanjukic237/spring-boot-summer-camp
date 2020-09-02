@@ -5,6 +5,7 @@ import com.ag04smarts.sha.models.patient.medicalRecord.PatientMedicalRecord;
 import com.ag04smarts.sha.models.patient.medicalRecord.Symptom;
 import com.ag04smarts.sha.repositories.PatientMedicalRecordRepository;
 import com.ag04smarts.sha.repositories.PatientRepository;
+import com.ag04smarts.sha.services.EmailServiceImpl;
 import com.ag04smarts.sha.sha9Test.Sha9Test;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,6 +1,7 @@
 package com.ag04smarts.sha.controllers.patient;
 
 import com.ag04smarts.sha.models.patient.Patient;
+import com.ag04smarts.sha.services.EmailService;
 import com.ag04smarts.sha.services.patient.PatientService;
 
 import io.swagger.annotations.Api;
@@ -23,15 +24,18 @@ import org.springframework.web.multipart.MultipartFile;
 public class PatientController {
 
     private final PatientService patientService;
+    private final EmailService emailService;
 
     /**
      * Constructor that initializes the repository created in @PostConstruct in {@Link SHAApplication}.
      *
      * @param patientService service for http methods
+     * @param emailService
      */
 
-    public PatientController(PatientService patientService) {
+    public PatientController(PatientService patientService, EmailService emailService) {
         this.patientService = patientService;
+        this.emailService = emailService;
     }
 
     /**
@@ -44,6 +48,7 @@ public class PatientController {
     @GetMapping("/api/patient")
     public CollectionModel<EntityModel<Patient>> all() {
         log.info("Getting /api/patient (list of all patients)");
+        emailService.sendSimpleMessage("ivanjukic237@gmail.com", "Testna poruka", "Ovo je test! :)");
         return patientService.mapEveryPatient();
     }
 
