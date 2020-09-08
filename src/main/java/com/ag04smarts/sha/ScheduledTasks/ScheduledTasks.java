@@ -21,4 +21,9 @@ public class ScheduledTasks {
     public void reportCurrentTime() {
         log.info("Time is {}", date.format(new Date()));
     }
+    @Scheduled(cron = "0 3 20 * * ?")
+    public void cronDemo() {
+        log.info("Cron demo.");
+
+    }
 }
